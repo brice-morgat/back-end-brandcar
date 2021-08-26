@@ -62,5 +62,15 @@ exports.delete = (req, res) => {
 
   Brandcar.destroy({
     where: { id: id }
-  })
+  }).then(num => {
+    if (num == 1) {
+      res.send({
+        message: "Brand Cars has been removed"
+      });
+    } else {
+      res.send({
+        message: `BrandCar with id=${id} was not found. `
+      });
+    }
+  });
 };
